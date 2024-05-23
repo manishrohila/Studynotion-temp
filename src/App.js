@@ -21,6 +21,7 @@ import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
 import Cart from "./components/core/Dashboard/Cart";
 import { ACCOUNT_TYPE } from "./utils/constants";
 function App() {
+  const dispatch = useDispatch();
   const {user} = useSelector( (state) => state.profile );
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
@@ -105,6 +106,8 @@ function App() {
 
 
         </Route>
+        
+        <Route path="*" element={<Error />} />
 
       </Routes>
 
