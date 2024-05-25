@@ -9,6 +9,8 @@ import { COURSE_STATUS } from '../../../../../utils/constants'
 import { HiOutlineCurrencyRupee } from 'react-icons/hi'
 import IconBtn from '../../../../common/IconBtn'
 import { MdNavigateNext } from 'react-icons/md'
+import ChipInput from './ChipInput'
+import Upload from "../Upload";
 
 const CourseInformationForm = () => {
   const {
@@ -241,7 +243,7 @@ const CourseInformationForm = () => {
       </div>
 
          {/* Course Tags */}
-      {/* <ChipInput
+      <ChipInput
         label="Tags"
         name="courseTags"
         placeholder="Enter Tags and press Enter"
@@ -249,16 +251,16 @@ const CourseInformationForm = () => {
         errors={errors}
         setValue={setValue}
         getValues={getValues}
-      /> */}
+      />
       {/* Course Thumbnail Image */}
-      {/* <Upload
+      <Upload
         name="courseImage"
         label="Course Thumbnail"
         register={register}
         setValue={setValue}
         errors={errors}
         editData={editCourse ? course?.thumbnail : null}
-      /> */}
+      />
       
        {/* Benefits of the course */}
        <div className="flex flex-col space-y-2">
