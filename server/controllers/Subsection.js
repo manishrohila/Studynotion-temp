@@ -9,7 +9,7 @@ exports.createSubSection = async (req, res) => {
       // Extract necessary information from the request body
       const { sectionId, title, description } = req.body
       const video = req.files.video
-    
+  
       // Check if all necessary fields are provided
       if (!sectionId || !title || !description || !video) {
         return res
@@ -54,8 +54,8 @@ exports.createSubSection = async (req, res) => {
   
   exports.updateSubSection = async (req, res) => {
     try {
-      const { sectionId, title, description } = req.body
-      const subSection = await SubSection.findById(sectionId)
+      const { sectionId,subSectionId, title, description } = req.body
+      const subSection = await SubSection.findById(subSectionId)
   
       if (!subSection) {
         return res.status(404).json({
@@ -83,8 +83,12 @@ exports.createSubSection = async (req, res) => {
   
       await subSection.save()
   
+      const updatedSection = await Section.findById(sectionId).populate("subSection")
+
+
       return res.json({
         success: true,
+        data:updatedSection,
         message: "Section updated successfully",
       })
     } catch (error) {
@@ -114,9 +118,12 @@ exports.createSubSection = async (req, res) => {
           .status(404)
           .json({ success: false, message: "SubSection not found" })
       }
+
+      const updatedSection = await Section.findById(sectionId).populate("subSection")
   
       return res.json({
         success: true,
+        data:updatedSection,
         message: "SubSection deleted successfully",
       })
     } catch (error) {

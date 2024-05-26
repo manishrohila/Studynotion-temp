@@ -73,7 +73,7 @@ export default function CourseBuilderForm() {
 
   const handleChangeEditSectionName = (sectionId, sectionName) => {
     if (editSectionName === sectionId) {
-      cancelEdit()
+      cancelEdit();
       return
     }
     setEditSectionName(sectionId)
@@ -151,7 +151,11 @@ export default function CourseBuilderForm() {
         >
           Back
         </button>
-        <IconBtn disabled={loading} text="Next" onclick={goToNext}>
+
+        <IconBtn
+          disabled={loading}
+          text="Next"
+          onclick={goToNext}>
           <MdNavigateNext />
         </IconBtn>
       </div>
