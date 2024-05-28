@@ -1,7 +1,11 @@
-const Course = require("../models/Course");
-const Category = require("../models/Category");
-const User = require("../models/User");
-const { uploadImageToCloudinary } = require("../utils/imageUploader");
+const Course = require("../models/Course")
+const Category = require("../models/Category")
+const Section = require("../models/Section")
+const SubSection = require("../models/SubSection")
+const User = require("../models/User")
+const { uploadImageToCloudinary } = require("../utils/imageUploader")
+const CourseProgress = require("../models/CourseProgress")
+const { convertSecondsToDuration } = require("../utils/secToDuration")
 // Function to create a new course
 exports.createCourse = async (req, res) => {
 	try {
@@ -321,7 +325,7 @@ exports.getFullCourseDetails = async (req, res) => {
 	  }
   
 	  // Unenroll students from the course
-	  const studentsEnrolled = course.studentsEnroled
+	  const studentsEnrolled = course.studentsEnrolled
 	  for (const studentId of studentsEnrolled) {
 		await User.findByIdAndUpdate(studentId, {
 		  $pull: { courses: courseId },
@@ -332,6 +336,7 @@ exports.getFullCourseDetails = async (req, res) => {
 	  const courseSections = course.courseContent
 	  for (const sectionId of courseSections) {
 		// Delete sub-sections of the section
+		console.log(sectionId);
 		const section = await Section.findById(sectionId)
 		if (section) {
 		  const subSections = section.subSection
