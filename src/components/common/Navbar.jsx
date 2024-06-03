@@ -14,7 +14,7 @@ import { BsChevronDown } from "react-icons/bs"
 
 
 const Navbar = () => {
-    console.log("Printing base url: ",process.env.REACT_APP_BASE_URL);
+    //console.log("Printing base url: ",process.env.REACT_APP_BASE_URL);
     const {token} = useSelector( (state) => state.auth );
     const {user} = useSelector( (state) => state.profile );
     const {totalItems} = useSelector( (state) => state.cart )
@@ -26,7 +26,7 @@ const Navbar = () => {
     const fetchSublinks = async() => {
         try{
             const result = await apiConnector("GET", categories.CATEGORIES_API);
-            console.log("Printing Sublinks result:" , result);
+            //console.log("Printing Sublinks result:" , result);
             setSubLinks(result.data.data);
         }
         catch(error) {
